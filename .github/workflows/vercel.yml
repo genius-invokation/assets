@@ -14,4 +14,4 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
-      - run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - run: bunx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
