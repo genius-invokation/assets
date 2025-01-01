@@ -1,9 +1,12 @@
-import { buffIconMapping } from "@gi-tcg/static-data/buffIconMapping";
 import type { EntityRawData } from "@gi-tcg/static-data";
 import { entities as allEntities } from "#common/data_v2.js";
 import allIcons from "../output/buffIconList.json";
 
 import "./style.css";
+
+const buffIconMapping = await fetch(
+  `https://raw.githubusercontent.com/genius-invokation/genius-invokation/refs/heads/main/packages/static-data/scripts/mappings/buff_icons.json`,
+).then((r) => r.json());
 
 const entities = allEntities.filter(
   (entity) => !entity.hidden && !("cardFace" in entity),
