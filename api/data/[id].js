@@ -1,4 +1,4 @@
-import data from "../../src/common/data.js";
+import data from "#common/data.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest

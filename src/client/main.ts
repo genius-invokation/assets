@@ -1,5 +1,6 @@
 import { buffIconMapping } from "@gi-tcg/static-data/buffIconMapping";
-import { EntityRawData, entities as allEntities } from "@gi-tcg/static-data";
+import type { EntityRawData } from "@gi-tcg/static-data";
+import { entities as allEntities } from "#common/data_v2.js";
 import allIcons from "../output/buffIconList.json";
 
 import "./style.css";
@@ -17,7 +18,7 @@ for (const entity of entities) {
   if (!icons.has(entity.buffIconHash)) {
     icons.set(entity.buffIconHash, []);
   }
-  icons.get(entity.buffIconHash)!.push(entity);
+  icons.get(entity.buffIconHash)!.push(entity as EntityRawData);
 }
 
 const getFreeIcons = () =>
@@ -127,6 +128,6 @@ exportBtn.addEventListener("click", () => {
   );
   a.download = "buff_icons.json";
   a.click();
-})
+});
 
 refresh();

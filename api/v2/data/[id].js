@@ -1,5 +1,5 @@
 // @ts-check
-import { characters, entities, actionCards, keywords } from "@gi-tcg/static-data";
+import { characters, entities, actionCards, keywords } from "#common/data_v2.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest
@@ -10,7 +10,7 @@ const skills = [...characters, ...entities].flatMap((ch) => ch.skills);
 
 /**
  * 
- * @param {import('@gi-tcg/static-data').EntityRawData} x 
+ * @param {{ type: string }} x 
  */
 function key(x) {
   if (x.type === "GCG_CARD_SUMMON") return 0;

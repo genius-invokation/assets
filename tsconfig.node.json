@@ -5,6 +5,13 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowJs": true,
+    "emitDeclarationOnly": true,
   },
-  "include": ["vite.config.ts", "src/node/**/*.ts", "api/**/*.js"]
+  "include": [
+    "vite.config.ts",
+    "src/node/**/*.ts",
+    "src/common/**/*.js",
+    "api/**/*.js"
+  ]
 }

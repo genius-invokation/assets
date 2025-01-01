@@ -1,5 +1,5 @@
 // @ts-check
-import { characters } from "@gi-tcg/static-data";
+import { characters } from "#common/data_v2.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest

@@ -9,6 +9,9 @@
     "build:vite": "vite build",
     "build": "bun build:thumbs && bun build:vite"
   },
+  "imports": {
+    "#common/*": "./src/common/*"
+  },
   "devDependencies": {
     "@genshin-db/tcg": "^5.1.6",
     "@gi-tcg/static-data": "^0.14.3",
