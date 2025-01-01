@@ -4,7 +4,7 @@ import { readdir } from "node:fs/promises";
 import path from "node:path";
 import { statSync } from "node:fs";
 import { imageDir, outputDir } from "./config";
-import { generateData } from "./generate_data";
+import { actionCards, characters, entities, keywords } from "./generate_data";
 
 const {
   positionals: [input],
@@ -17,8 +17,6 @@ if (typeof input === "undefined") {
   console.error("Input path not specified");
   process.exit(1);
 }
-
-const { actionCards, characters, entities, keywords } = await generateData();
 
 // 将原始提取素材的图片分组，找到每组中的最大文件（最高分辨率）路径
 
