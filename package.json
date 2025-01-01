@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite dev",
+    "build:data": "bun src/node/generate_data.ts",
     "build:images": "bun src/node/generate_images.ts $TEXTURE2D_FOLDER",
     "build:thumbs": "bun src/node/generate_thumbs.ts",
     "build:vite": "vite build",
-    "build": "bun build:thumbs && bun build:vite"
+    "build": "bun build:data && bun build:thumbs && bun build:vite"
   },
   "imports": {
     "#common/*": "./src/common/*"
