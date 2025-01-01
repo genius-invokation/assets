@@ -4,9 +4,7 @@ import allIcons from "../output/buffIconList.json";
 
 import "./style.css";
 
-const buffIconMapping = await fetch(
-  `https://raw.githubusercontent.com/genius-invokation/genius-invokation/refs/heads/main/packages/static-data/scripts/mappings/buff_icons.json`,
-).then((r) => r.json());
+let buffIconMapping: Record<string, string> = {};
 
 const entities = allEntities.filter(
   (entity) => !entity.hidden && !("cardFace" in entity),
@@ -133,4 +131,9 @@ exportBtn.addEventListener("click", () => {
   a.click();
 });
 
-refresh();
+fetch(
+  `https://raw.githubusercontent.com/genius-invokation/genius-invokation/refs/heads/main/packages/static-data/scripts/mappings/buff_icons.json`,
+)
+  .then((r) => r.json())
+  .then((r) => (buffIconMapping = r))
+  .then(refresh);
