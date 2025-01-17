@@ -1,5 +1,5 @@
 // @ts-check
-import { imageMap } from "../images";
+import { imageMap } from "../images.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest
