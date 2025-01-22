@@ -31,7 +31,10 @@ const X_CHARACTER_PADDING = Math.round(
   (WIDTH - CHARACTER_WIDTH * 3 - GAP * 2) / 2,
 );
 
-const IMAGE_DIR = path.resolve(import.meta.dirname, "../../public/assets");
+const IMAGE_DIR =
+  process.env.NODE_ENV === "production"
+    ? ".vercel/output/static/assets"
+    : path.resolve(import.meta.dirname, "../../public/assets");
 
 /**
  *
@@ -40,6 +43,7 @@ const IMAGE_DIR = path.resolve(import.meta.dirname, "../../public/assets");
  * @returns
  */
 export default async function handler(req, res) {
+  const host = req.headers.host;
   const { code } = req.query;
   if (typeof code !== "string") {
     res.status(400).send("Bad request (code)");
