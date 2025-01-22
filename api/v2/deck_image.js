@@ -31,10 +31,7 @@ const X_CHARACTER_PADDING = Math.round(
   (WIDTH - CHARACTER_WIDTH * 3 - GAP * 2) / 2,
 );
 
-const IMAGE_DIR =
-  process.env.NODE_ENV === "production"
-    ? ".vercel/output/static/assets"
-    : path.resolve(import.meta.dirname, "../../public/assets");
+const IMAGE_DIR = path.resolve(import.meta.dirname, "../../public/assets");
 
 /**
  *
