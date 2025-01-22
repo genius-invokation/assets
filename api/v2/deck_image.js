@@ -58,7 +58,6 @@ export default async function handler(req, res) {
       }
       cards.push(card);
     }
-    console.log({ Y_PADDING, X_CARD_PADDING, X_CHARACTER_PADDING });
     const image = sharp({
       create: {
         width: WIDTH,
