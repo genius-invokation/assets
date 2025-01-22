@@ -13,6 +13,10 @@
   "imports": {
     "#common/*": "./src/common/*"
   },
+  "dependencies": {
+    "@gi-tcg/utils": "^0.16.4",
+    "sharp": "^0.33.5"
+  },
   "devDependencies": {
     "@genshin-db/tcg": "^5.1.6",
     "@gi-tcg/static-data": "^0.14.3",
@@ -26,7 +30,6 @@
     "vercel": "^34.1.1",
     "vite": "^5.1.0",
     "vue-tsc": "^1.8.27",
-    "sharp": "^0.33.2",
     "vue": "3.3.4",
     "vuetify": "3.3.8"
   },
