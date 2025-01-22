@@ -30,3 +30,5 @@ export const all = [...characters, ...actionCards, ...skills, ...sortedEntities,
 export default function handler(req, res) {
   return res.status(200).json(all);
 }
+
+export { keywords };

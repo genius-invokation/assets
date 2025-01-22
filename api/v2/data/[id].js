@@ -1,7 +1,6 @@
 // @ts-check
 
-import { keywords } from "@gi-tcg/static-data";
-import { all } from "../data.js";
+import { all, keywords } from "../data.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest
