@@ -20,7 +20,17 @@ export default async function handler(req, res) {
     return;
   }
   if (id.endsWith(".webp")) {
-    await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`)
+    let query = id.slice(0, -5);
+    if (Number.isNaN(Number(query))) {
+      const found = all.find((obj) => obj.name === query);
+      if (found) {
+        query = found.id;
+      } else {
+        res.status(404).send("Not found");
+        return;
+      }
+    }
+    await fetch(`https://gi-tcg-card-data-img.vercel.app/${query}.webp`)
       .then((r) =>
         r.ok ? r.arrayBuffer() : Promise.reject(new Error(`${r.status}`)),
       )
