@@ -1,6 +1,7 @@
 // @ts-check
 
 import { all, keywords } from "../data.js";
+import { characters, actionCards } from "#common/data_v2.js";
 
 /**
  * @typedef {import("@vercel/node").VercelRequest} VercelRequest
@@ -22,9 +23,11 @@ export default async function handler(req, res) {
   if (id.endsWith(".webp")) {
     let query = id.slice(0, -5);
     if (query && Number.isNaN(Number(query))) {
-      const found = all.filter((obj) => obj.name.includes(query));
+      const found = [...characters, ...actionCards].filter((obj) =>
+        obj.name.includes(query),
+      );
       if (found.length === 1) {
-        query = found[0].id;
+        query = String(found[0].id);
       } else {
         res.status(404).send("Not found");
         return;
