@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     return;
   }
   if (id.endsWith(".webp")) {
-    const response = await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`);
+    const response = await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`).then((r) => r.blob());
     res.status(200).send(response);
     return;
   }
