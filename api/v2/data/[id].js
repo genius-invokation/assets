@@ -20,9 +20,8 @@ export default async function handler(req, res) {
       .send("Bad request (multiple id)");
     return;
   }
-  const { accept } = req.headers;
-  if (accept.includes("image/webp")) {
-    const response = await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}.webp`);
+  if (id.endsWith(".webp")) {
+    const response = await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`);
     res.status(200).send(response);
     return;
   }
