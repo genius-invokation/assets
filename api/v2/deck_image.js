@@ -13,15 +13,15 @@ const shareIdMap = new Map(
  * @typedef {import("@vercel/node").VercelResponse} VercelResponse
  */
 
-const WIDTH = 200;
-const HEIGHT = 310;
+const WIDTH = 320;
+const HEIGHT = 500;
 
-const CHARACTER_WIDTH = 40;
-const CARD_WIDTH = 28;
+const CHARACTER_WIDTH = 60;
+const CARD_WIDTH = 45;
 const CHARACTER_HEIGHT = Math.round(CHARACTER_WIDTH * (11 / 7));
 const CARD_HEIGHT = Math.round(CARD_WIDTH * (11 / 7));
 
-const GAP = 4;
+const GAP = 6;
 
 const Y_PADDING = Math.round(
   (HEIGHT - CHARACTER_HEIGHT - CARD_HEIGHT * 5 - GAP * 4) / 3,
@@ -97,9 +97,9 @@ export default async function handler(req, res) {
     }
     const result = await image
       .composite(await Promise.all(composites))
-      .png()
+      .webp()
       .toBuffer();
-    res.setHeader("Content-Type", "image/png").send(result);
+    res.setHeader("Content-Type", "image/webp").send(result);
   } catch (e) {
     res.redirect(
       `https://placehold.jp/${WIDTH}x${HEIGHT}.png?text=${encodeURIComponent(
