@@ -20,13 +20,17 @@ export default async function handler(req, res) {
     return;
   }
   if (id.endsWith(".webp")) {
-    const response = await fetch(
-      `https://gi-tcg-card-data-img.vercel.app/${id}`,
-    ).then((r) => r.arrayBuffer());
-    res
-      .status(200)
-      .setHeader("Content-Type", "image/webp")
-      .send(Buffer.from(response));
+    await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`)
+      .then((r) => r.arrayBuffer())
+      .then((buf) => {
+        res
+          .status(200)
+          .setHeader("Content-Type", "image/webp")
+          .send(Buffer.from(buf));
+      })
+      .catch((err) => {
+        res.status(502).send({ message: err.message });
+      });
     return;
   }
   let found;
