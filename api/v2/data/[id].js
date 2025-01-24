@@ -21,10 +21,10 @@ export default async function handler(req, res) {
   }
   if (id.endsWith(".webp")) {
     let query = id.slice(0, -5);
-    if (Number.isNaN(Number(query))) {
-      const found = all.find((obj) => obj.name === query);
-      if (found) {
-        query = found.id;
+    if (query && Number.isNaN(Number(query))) {
+      const found = all.filter((obj) => obj.name.includes(query));
+      if (found.length === 1) {
+        query = found[0].id;
       } else {
         res.status(404).send("Not found");
         return;
