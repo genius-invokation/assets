@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       const found = [...characters, ...actionCards].filter((obj) =>
         obj.name.includes(query),
       );
-      if (found.length > 1) {
+      if (found.length >= 1) {
         query = String(found[0].id);
       } else {
         res.status(404).send("Not found");
