@@ -16,13 +16,17 @@ import { all, keywords } from "../data.js";
 export default async function handler(req, res) {
   const { id } = req.query;
   if (Array.isArray(id)) {
-    res.status(400)
-      .send("Bad request (multiple id)");
+    res.status(400).send("Bad request (multiple id)");
     return;
   }
   if (id.endsWith(".webp")) {
-    const response = await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`).then((r) => r.blob());
-    res.status(200).send(response);
+    const response = await fetch(
+      `https://gi-tcg-card-data-img.vercel.app/${id}`,
+    ).then((r) => r.arrayBuffer());
+    res
+      .status(200)
+      .setHeader("Content-Type", "image/webp")
+      .send(Buffer.from(response));
     return;
   }
   let found;
