@@ -21,7 +21,9 @@ export default async function handler(req, res) {
   }
   if (id.endsWith(".webp")) {
     await fetch(`https://gi-tcg-card-data-img.vercel.app/${id}`)
-      .then((r) => r.arrayBuffer())
+      .then((r) =>
+        r.ok ? r.arrayBuffer() : Promise.reject(new Error(`${r.status}`)),
+      )
       .then((buf) => {
         res
           .status(200)
