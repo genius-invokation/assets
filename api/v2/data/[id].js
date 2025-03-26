@@ -49,10 +49,11 @@ export default async function handler(req, res) {
     return;
   }
   let found;
-  if (id.startsWith("K")) {
-    found = keywords.find((obj) => obj.id === Number(id.slice(1)));
+  let numberId = Number(id);
+  if (numberId < 0) {
+    found = keywords.find((obj) => obj.id === -numberId);
   } else {
-    found = all.find((obj) => obj.id === Number(id));
+    found = all.find((obj) => obj.id === numberId);
   }
   if (found) {
     res.status(200).json(found);
