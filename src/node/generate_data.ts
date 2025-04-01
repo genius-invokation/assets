@@ -10,21 +10,22 @@ import { outputDir } from "./config";
 
 const GITHUB_CONTENT_BASE = `https://raw.githubusercontent.com/genius-invokation/genius-invokation/refs/heads/main/packages/static-data/src/data`;
 
-const FILENAMES = [
-  "action_cards.json",
-  "characters.json",
-  "entities.json",
-  "keywords.json",
-];
+const FILENAMES = ["action_cards", "characters", "entities", "keywords"];
 
 const downloaded: Record<string, any[]> = {};
 
 for (const filename of FILENAMES) {
-  const data = await fetch(`${GITHUB_CONTENT_BASE}/${filename}`).then((r) =>
-    r.text(),
+  const data = await fetch(`${GITHUB_CONTENT_BASE}/${filename}.json`).then(
+    (r) => r.text(),
   );
-  downloaded[filename] = JSON.parse(data);
-  await Bun.write(`${outputDir}/${filename}`, data);
+  downloaded[filename] = JSON.parse(data).map((src) => ({
+    ...src,
+    category: filename,
+  }));
+  await Bun.write(
+    `${outputDir}/${filename}.json`,
+    JSON.stringify(downloaded[filename]),
+  );
 }
 
 export const actionCards: ActionCardRawData[] = downloaded["action_cards.json"];
