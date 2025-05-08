@@ -28,7 +28,7 @@ for (const filename of FILENAMES) {
   );
 }
 
-export const actionCards: ActionCardRawData[] = downloaded["action_cards.json"];
-export const characters: CharacterRawData[] = downloaded["characters.json"];
-export const entities: EntityRawData[] = downloaded["entities.json"];
-export const keywords: KeywordRawData[] = downloaded["keywords.json"];
+export const actionCards: ActionCardRawData[] = downloaded["action_cards"];
+export const characters: CharacterRawData[] = downloaded["characters"];
+export const entities: EntityRawData[] = downloaded["entities"];
+export const keywords: KeywordRawData[] = downloaded["keywords"];
