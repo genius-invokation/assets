@@ -52,26 +52,8 @@ for (const name in grouped) {
   allImagePaths[name] = maxFilePath;
 }
 
-/** 最终的 id 到图片名的映射 */
-const result: Record<number, string> = {
-  "0": "UI_Gcg_Buff_Common_Element_Physics",
-  "1": "UI_Gcg_Buff_Common_Element_Ice",
-  "2": "UI_Gcg_Buff_Common_Element_Water",
-  "3": "UI_Gcg_Buff_Common_Element_Fire",
-  "4": "UI_Gcg_Buff_Common_Element_Electric",
-  "5": "UI_Gcg_Buff_Common_Element_Wind",
-  "6": "UI_Gcg_Buff_Common_Element_Rock",
-  "7": "UI_Gcg_Buff_Common_Element_Grass",
-  "9": "UI_Gcg_Buff_Common_Element_Heal",
-};
 /** 需要处理（保存并生成缩略图）的图片名集合 */
-const imagesToProcess = new Set<string>(Object.values(result));
-
-const replaceNameMap: Record<string, string> = {
-  UI_Gcg_CardFace_Summon_AbyssEle: "UI_Gcg_CardFace_Summon_AbyssEle_Layer00",
-  UI_Gcg_CardFace_Char_Monster_Effigyice:
-    "UI_Gcg_CardFace_Char_Monster_EffigyIce",
-};
+const imagesToProcess = new Set<string>();
 
 const chSkills = characters.flatMap((ch) => ch.skills);
 const etSkills = entities.flatMap((et) => et.skills);
@@ -89,24 +71,16 @@ for (const obj of allData) {
   let filename: string;
   if ("cardFace" in obj && obj.cardFace) {
     filename = obj.cardFace;
-  } else if ("icon" in obj && obj.icon) {
-    filename = obj.icon;
-  } else if ("buffIcon" in obj && obj.buffIcon) {
-    filename = obj.buffIcon;
-  } else if ("buffIconHash" in obj && obj.buffIconHash) {
-    filename = "UI_Gcg_Buff_Common_Special";
-  } else {
-    continue;
   }
-  if (filename in replaceNameMap) {
-    filename = replaceNameMap[filename];
+  if ("icon" in obj && obj.icon) {
+    filename = obj.icon;
+  }
+  if ("buffIcon" in obj && obj.buffIcon) {
+    filename = obj.buffIcon;
   }
   if (!(filename in allImagePaths)) {
     console.warn(`Missing image: ${filename}`);
     continue;
-  }
-  if (!result[obj.id]) {
-    result[obj.id] = filename;
   }
   imagesToProcess.add(filename);
 }
@@ -134,10 +108,6 @@ for (const name of imagesToProcess) {
   console.log(`Generated image for ${name}`);
 }
 
-await Bun.write(
-  `${outputDir}/imageNames.json`,
-  JSON.stringify(result, void 0, 2),
-);
 await Bun.write(
   `${outputDir}/buffIconList.json`,
   JSON.stringify(buffIconList, void 0, 2),

@@ -27,7 +27,7 @@
   ],
   "outputDirectory": "dist",
   "functions": {
-    "api/v2/deck_image.js": {
+    "api/v3/deck_image.js": {
       "includeFiles": "public/assets/*.webp"
     }
   }
