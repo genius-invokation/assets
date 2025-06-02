@@ -4,7 +4,7 @@
   "devCommand": "bunx --bun vite dev --port $PORT",
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": ".*",
       "headers": [
         {
           "key": "Access-Control-Allow-Credentials",
