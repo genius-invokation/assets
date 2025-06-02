@@ -25,9 +25,8 @@ const checkType = (type) => {
 };
 
 const dataIncludesElements = [
-  ...all,
   ...[
-    /** 最终的 id 到图片名的映射 */ "UI_Gcg_Buff_Common_Element_Physics",
+    "UI_Gcg_Buff_Common_Element_Physics",
     "UI_Gcg_Buff_Common_Element_Ice",
     "UI_Gcg_Buff_Common_Element_Water",
     "UI_Gcg_Buff_Common_Element_Fire",
@@ -37,6 +36,7 @@ const dataIncludesElements = [
     "UI_Gcg_Buff_Common_Element_Grass",
     "UI_Gcg_Buff_Common_Element_Heal",
   ].map((icon, id) => ({ id, icon })),
+  ...all,
 ];
 
 /**
@@ -57,6 +57,7 @@ export default function handler(req, res) {
     res.status(404).send("Not found");
     return;
   }
+  console.log(data);
   let imageName;
   if ("cardFace" in data && (ty === "cardFace" || ty === "unspecified")) {
     imageName = data.cardFace;
