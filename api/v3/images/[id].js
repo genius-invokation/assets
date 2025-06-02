@@ -7,11 +7,11 @@ import { all } from "../data.js";
  */
 
 /**
- * 
- * @param {string | string[] | undefined} type 
+ *
+ * @param {string | string[] | undefined} type
  * @returns {"icon" | "cardFace" | "unspecified"}
  */
-const checkType = (type)  => {
+const checkType = (type) => {
   if (Array.isArray(type) || !type) {
     return "unspecified";
   }
@@ -22,8 +22,22 @@ const checkType = (type)  => {
     return "cardFace";
   }
   return "unspecified";
-}
+};
 
+const dataIncludesElements = [
+  ...all,
+  ...[
+    /** 最终的 id 到图片名的映射 */ "UI_Gcg_Buff_Common_Element_Physics",
+    "UI_Gcg_Buff_Common_Element_Ice",
+    "UI_Gcg_Buff_Common_Element_Water",
+    "UI_Gcg_Buff_Common_Element_Fire",
+    "UI_Gcg_Buff_Common_Element_Electric",
+    "UI_Gcg_Buff_Common_Element_Wind",
+    "UI_Gcg_Buff_Common_Element_Rock",
+    "UI_Gcg_Buff_Common_Element_Grass",
+    "UI_Gcg_Buff_Common_Element_Heal",
+  ].map((icon, id) => ({ id, icon })),
+];
 
 /**
  *
@@ -34,15 +48,13 @@ const checkType = (type)  => {
 export default function handler(req, res) {
   const { id, thumb, type } = req.query;
   if (Array.isArray(id)) {
-    res.status(400)
-      .send("Bad request (multiple id)");
+    res.status(400).send("Bad request (multiple id)");
     return;
   }
   const ty = checkType(type);
-  const data = all.find((x) => x.id === Number(id));
+  const data = dataIncludesElements.find((x) => x.id === Number(id));
   if (!data) {
-    res.status(404)
-      .send("Not found");
+    res.status(404).send("Not found");
     return;
   }
   let imageName;
@@ -57,8 +69,7 @@ export default function handler(req, res) {
     }
   }
   if (!imageName) {
-    res.status(404)
-      .send("Not found (no image)");
+    res.status(404).send("Not found (no image)");
     return;
   }
   let url;
@@ -67,5 +78,8 @@ export default function handler(req, res) {
   } else {
     url = `/assets/${imageName}.webp`;
   }
-  res.status(307).setHeader("Location", url).send(void 0);
+  res
+    .status(307)
+    .setHeader("Location", url)
+    .send(void 0);
 }
