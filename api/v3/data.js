@@ -13,15 +13,6 @@ import {
 
 const skills = [...characters, ...entities].flatMap((ch) => ch.skills);
 
-/**
- *
- * @param {{ type: string }} x
- */
-function key(x) {
-  if (x.type === "GCG_CARD_SUMMON") return 0;
-  else return 1;
-}
-
 const allEntities = Object.values(
   [...entities, ...actionCards].reduce((acc, curr) => {
     if (acc[curr.id]) {
