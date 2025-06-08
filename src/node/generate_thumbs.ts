@@ -15,18 +15,24 @@ for (const filename of filenames) {
   }
   const image = Sharp(path.join(imageDir, filename));
   const { width, height } = await image.metadata();
-  if (filename.startsWith("Skill") || filename.startsWith("MonsterSkill")) {
+  if (filename.startsWith("Skill") || filename.startsWith("MonsterSkill") || filename.startsWith("Btn")) {
+    // realsize 100*100, 128*128
     if (width! > height!) {
-      image.resize(30, null);
+      image.resize(80, null);
     } else {
-      image.resize(null, 30);
+      image.resize(null, 80);
     }
   } else if (filename.startsWith("UI_Gcg_CardFace")) {
-    image.resize(80, null);
+    // realsize 420*720
+    image.resize(160, null);
   } else if (filename.startsWith("UI_Gcg_Char")) {
-    image.resize(30, null);
+    // realsize 256*256
+    image.resize(80, null);
+  } else if (filename.startsWith("UI_Gcg_Buff_Vehicle")) {
+    // realsize 100*100
+    image.resize(50, null);
   } else {
-    image.resize(null, 20);
+    image.resize(null, 40);
   }
   await image.toFile(path.join(thumbImageDir, filename));
   console.log(`Generated thumb for ${filename}`);
