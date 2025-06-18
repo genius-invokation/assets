@@ -68,21 +68,22 @@ const allData = [
 
 // 召唤物、角色牌、行动牌
 for (const obj of allData) {
-  let filename: string;
-  if ("cardFace" in obj && obj.cardFace) {
-    filename = obj.cardFace;
-  }
-  if ("icon" in obj && obj.icon) {
-    filename = obj.icon;
-  }
-  if ("buffIcon" in obj && obj.buffIcon) {
-    filename = obj.buffIcon;
-  }
-  if (!(filename in allImagePaths)) {
-    console.warn(`Missing image: ${filename}`);
+  if ("hidden" in obj && obj.hidden) {
     continue;
   }
-  imagesToProcess.add(filename);
+  for (const prop of ["cardFace", "icon", "buffIcon"] as const) {
+    let filename = obj[prop];
+    if (!filename) {
+      continue;
+    }
+    if (!(filename in allImagePaths)) {
+      console.log(obj);
+      console.warn(`Missing image: ${filename}`);
+      continue;
+    } else {
+      imagesToProcess.add(filename);
+    }
+  }
 }
 
 const buffIconList: string[] = [];
