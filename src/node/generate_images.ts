@@ -7,7 +7,7 @@ import { imageDir, outputDir } from "./config";
 import { actionCards, characters, entities, keywords } from "./generate_data";
 
 const {
-  positionals: [input],
+  positionals: [input = import.meta.env.TEXTURE2D_FOLDER],
 } = parseArgs({
   args: process.argv.slice(2),
   allowPositionals: true,

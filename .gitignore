@@ -6,3 +6,5 @@ dist
 public/assets/thumbs
 
 .vercel
+
+.env
