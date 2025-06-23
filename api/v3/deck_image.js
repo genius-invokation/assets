@@ -40,6 +40,9 @@ const IMAGE_DIR = path.resolve(import.meta.dirname, "../../public/assets");
  * @returns
  */
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   const host = req.headers.host;
   const { code } = req.query;
   if (typeof code !== "string") {

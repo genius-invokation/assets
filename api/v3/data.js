@@ -34,6 +34,9 @@ export const all = [...characters, ...allEntities, ...skills, ...keywords];
  * @returns
  */
 export default function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   return res.status(200).json(all);
 }
 

@@ -15,6 +15,9 @@ import { characters, actionCards } from "#common/data_v2.js";
  * @returns
  */
 export default async function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   const { id } = req.query;
   if (Array.isArray(id)) {
     res.status(400).send("Bad request (multiple id)");

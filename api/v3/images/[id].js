@@ -47,6 +47,9 @@ const dataIncludesElements = [
  * @returns
  */
 export default function handler(req, res) {
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
   const { id, thumb, type } = req.query;
   if (Array.isArray(id)) {
     res.status(400).send("Bad request (multiple id)");
