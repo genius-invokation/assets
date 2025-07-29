@@ -3,30 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vite dev",
-    "build:data": "bun src/node/generate_data.ts",
-    "build:images": "bun src/node/generate_images.ts $TEXTURE2D_FOLDER",
-    "build:thumbs": "bun src/node/generate_thumbs.ts",
-    "build:vite": "vite build",
-    "build": "bun build:data && bun build:thumbs && bun build:vite"
-  },
-  "imports": {
-    "#common/*": "./src/common/*"
+    "dev": "bun --watch ./src/main.ts",
+    "start": "pm2 startOrRestart pm2.config.cjs"
   },
   "dependencies": {
-    "@gi-tcg/utils": "^0.16.4",
-    "sharp": "^0.33.5"
+    "@gi-tcg/utils": "^0.16.4"
   },
   "devDependencies": {
-    "@genshin-db/tcg": "^5.1.6",
-    "@gi-tcg/static-data": "^0.14.3",
-    "@mdi/font": "^7.4.47",
-    "@types/bun": "^1.0.5",
-    "@types/node": "^20.11.16",
-    "@vercel/node": "^3.0.17",
-    "bun": "^1.0.26",
-    "vercel": "^34.1.1",
-    "vite": "^5.1.0"
+    "@types/bun": "^1.2.19",
+    "pm2": "^6.0.8",
+    "bun": "^1.2.19"
   },
   "engines": {
     "node": ">= 20.10.0"

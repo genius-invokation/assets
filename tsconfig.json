@@ -11,9 +11,6 @@
 
     "strict": true,
     "resolveJsonModule": true,
-    "allowJs": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src/client/**/*.ts", "src/client/**/*.d.ts", "src/common/**/*.js", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  }
 }
