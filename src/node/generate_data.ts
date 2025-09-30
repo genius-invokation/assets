@@ -8,24 +8,25 @@ import { outputDir } from "./config";
 
 // 从 github 获取最新的数据
 
-const GITHUB_CONTENT_BASE = `https://raw.githubusercontent.com/genius-invokation/genius-invokation/refs/heads/main/packages/static-data/src/data`;
+const GITHUB_CONTENT_BASE = `https://assets-gitcg-cf.guyutongxue.site/api/v4/data/latest/CHS`;
 
 const FILENAMES = ["action_cards", "characters", "entities", "keywords"];
 
 const downloaded: Record<string, any[]> = {};
 
 for (const filename of FILENAMES) {
-  const data = await fetch(`${GITHUB_CONTENT_BASE}/${filename}.json`).then(
-    (r) => r.text(),
+  const { success, data, ...rest } = await fetch(`${GITHUB_CONTENT_BASE}/${filename}`).then(
+    (r) => r.json(),
   );
-  downloaded[filename] = JSON.parse(data).map((src) => ({
-    ...src,
-    category: filename,
-  }));
+  if (!success) {
+    throw new Error(`Failed to fetch ${filename}: ${JSON.stringify(rest)}`);
+  }
+  downloaded[filename] = data;
   await Bun.write(
     `${outputDir}/${filename}.json`,
     JSON.stringify(downloaded[filename]),
   );
+  console.log(`Fetched and saved ${filename}.json`);
 }
 
 export const actionCards: ActionCardRawData[] = downloaded["action_cards"];

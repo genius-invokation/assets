@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite dev",
+    "migrate": "rm public/missing2/*.png && mv public/missing/*.png public/missing2",
     "build:data": "bun src/node/generate_data.ts",
     "build:images": "bun src/node/generate_images.ts $TEXTURE2D_FOLDER",
     "build:thumbs": "bun src/node/generate_thumbs.ts",
