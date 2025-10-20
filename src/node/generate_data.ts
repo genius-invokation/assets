@@ -8,7 +8,7 @@ import { outputDir } from "./config";
 
 // 从 github 获取最新的数据
 
-const GITHUB_CONTENT_BASE = `https://assets-gi-tcg-cf.guyutongxue.site/api/v4/data/latest/CHS`;
+const GITHUB_CONTENT_BASE = `https://gi-tcg-assets-api-hf.guyutongxue.site/api/v4/data/latest/CHS`;
 
 const FILENAMES = ["action_cards", "characters", "entities", "keywords"];
 
