@@ -8,16 +8,18 @@ import { outputDir } from "./config";
 
 // 从 github 获取最新的数据
 
-const GITHUB_CONTENT_BASE = `https://gi-tcg-assets-api-hf.guyutongxue.site/api/v4/data/latest/CHS`;
+const ASSETS_API_ENDPOINT =
+  import.meta.env.ASSETS_API_ENDPOINT ||
+  `https://gi-tcg-assets-api-hf.guyutongxue.site/api/v4/data/latest/CHS`;
 
 const FILENAMES = ["action_cards", "characters", "entities", "keywords"];
 
 const downloaded: Record<string, any[]> = {};
 
 for (const filename of FILENAMES) {
-  const { success, data, ...rest } = await fetch(`${GITHUB_CONTENT_BASE}/${filename}`).then(
-    (r) => r.json(),
-  );
+  const { success, data, ...rest } = await fetch(
+    `${ASSETS_API_ENDPOINT}/${filename}`,
+  ).then((r) => r.json());
   if (!success) {
     throw new Error(`Failed to fetch ${filename}: ${JSON.stringify(rest)}`);
   }
