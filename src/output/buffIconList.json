@@ -1,4 +1,5 @@
 [
+  "UI_Gcg_Buff_Adventure",
   "UI_Gcg_Buff_Alhatham_S",
   "UI_Gcg_Buff_Apep_E",
   "UI_Gcg_Buff_Apep_S",
@@ -143,6 +144,9 @@
   "UI_Gcg_Buff_Tartaglia_S_03",
   "UI_Gcg_Buff_TheAbyssXiuhcoatl_S",
   "UI_Gcg_Buff_Tohma_E",
+  "UI_Gcg_Buff_Varesa_E",
+  "UI_Gcg_Buff_Varesa_Q",
+  "UI_Gcg_Buff_Varesa_S",
   "UI_Gcg_Buff_Vehicle_Bisonsaurus",
   "UI_Gcg_Buff_Vehicle_Chasca",
   "UI_Gcg_Buff_Vehicle_Drillhead",
@@ -151,6 +155,7 @@
   "UI_Gcg_Buff_Vehicle_Flamingo",
   "UI_Gcg_Buff_Vehicle_HilistrayWater",
   "UI_Gcg_Buff_Vehicle_Hookwalker",
+  "UI_Gcg_Buff_Vehicle_Ifa",
   "UI_Gcg_Buff_Vehicle_Kachina",
   "UI_Gcg_Buff_Vehicle_Liuyun",
   "UI_Gcg_Buff_Vehicle_MantaRay",
